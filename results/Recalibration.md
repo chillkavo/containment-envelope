@@ -36,16 +36,16 @@ Values narrowed: 4
 
 | | Fields |
 |---|---|
-| Envelope v1 | 13 |
-| Envelope v2 | 13 |
+| Envelope v1 | 15 |
+| Envelope v2 | 15 |
 | Enumerated rule set | 12 and growing |
 
 ## Effect on verifiability
 
 | | Findings | Coverage gaps |
 |---|---|---|
-| v1 | 10 | 1 |
-| v2 | 9 | 0 |
+| v1 | 9 | 1 |
+| v2 | 8 | 0 |
 
 Recalibration closed the V2 coverage gap without adding a
 field: allowed_methods became externally verifiable because an
@@ -56,4 +56,5 @@ existing boolean was narrowed, not because a rule was written.
 Recalibration does not close V8. Narrowing a ceiling moves the
 threshold; it does not make a within-limit action distinguishable
 from a legitimate one. Parameterisation bounds how many rules a
-standard needs. It does not extend what aggregates can observe.
+standard needs. It does not extend what aggregates can observe. 
+.
