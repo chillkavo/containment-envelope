@@ -1,0 +1,53 @@
+envelope_id: eval-agent-web-lookup
+version: 3
+issued: 2026-06-28T00:00:00Z
+description: >
+  Evaluation agent running multi-round web lookup tasks.
+  Read-only. No external publication. Single-use session.
+  Illustrative example — not the configuration of any real lab.
+
+network:
+  allowed_destinations:
+    - host: docs.python.org
+      port: 443
+      protocol: https
+    - host: api.internal.lab
+      port: 443
+      protocol: https
+    - host: cache.internal.lab
+      port: 443
+      protocol: https
+  l7_terminated_egress: true
+  allowed_methods:
+    - GET
+    - HEAD
+  max_egress_bytes: 50000000
+
+credentials:
+  mounted_secrets:
+    - ref:eval-readonly-token
+  ttl_seconds: 3600
+
+tools:
+  invocable_tools:
+    - http_get@a91f3c
+    - search@77c0de
+    - read_file@33be21
+    - python_exec@5d8a04
+  max_subagents: 0
+
+files:
+  writable_paths:
+    - /workspace/out
+    - /tmp
+
+compute:
+  step_definition: model_call
+  max_steps: 5000
+
+persistence:
+  allowed_external_publication: []
+  resources_to_destroy:
+    - container
+    - volume
+    - token
