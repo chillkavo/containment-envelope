@@ -99,6 +99,22 @@ def build_cases():
         tel["network"]["total_requests"] = 2400
     cases.append(_case("V9-cross-sandbox-coordination", "V9", mutate_tel=v9))
 
+    # --- V11: undeclared safety-control state ------------------------
+    def v11(tel):
+        tel["model_runtime"]["calls_with_classifiers_disabled"] = 1842
+    cases.append(_case("V11-classifiers-disabled-undeclared", "V11",
+                       mutate_tel=v11))
+
+    # V11 declared honestly: the lab states classifiers are off for this
+    # environment. The verifier reports the grant, not a violation.
+    def v11_ok_env(env):
+        env["model_runtime"]["safety_classifiers_enabled"] = False
+
+    def v11_ok_tel(tel):
+        tel["model_runtime"]["calls_with_classifiers_disabled"] = 1842
+    cases.append(_case("clean-4-classifiers-declared-off", None,
+                       mutate_env=v11_ok_env, mutate_tel=v11_ok_tel))
+
     # --- V10a: digest issued against a different envelope ------------
     def v10a(tel):
         tel["envelope_hash"] = "sha256:" + "0" * 64

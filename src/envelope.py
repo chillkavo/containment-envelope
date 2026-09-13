@@ -47,6 +47,10 @@ BASE_ENVELOPE = {
         "allowed_external_publication": [],
         "resources_to_destroy": ["container", "volume", "token"],
     },
+    "model_runtime": {
+        "safety_classifiers_enabled": True,
+        "refusal_thresholds_reduced": False,
+    },
 }
 
 
@@ -73,6 +77,7 @@ BASE_TELEMETRY = {
         "files": {"component": "fs-monitor", "signer": "kms-rt-c"},
         "compute": {"component": "scheduler", "signer": "kms-rt-c"},
         "persistence": {"component": "artifact-store", "signer": "kms-art-d"},
+        "model_runtime": {"component": "inference-gateway", "signer": "kms-inf-e"},
     },
     "network": {
         "total_requests": 1842,
@@ -104,6 +109,11 @@ BASE_TELEMETRY = {
         "total_publications": 0,
         "publications_to_undeclared_destination": 0,
         "orphans_by_class": {"container": 0, "volume": 0, "token": 0},
+    },
+    "model_runtime": {
+        "total_model_calls": 1842,
+        "calls_with_classifiers_disabled": 0,
+        "calls_with_reduced_refusals": 0,
     },
 }
 

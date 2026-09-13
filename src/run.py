@@ -8,7 +8,7 @@ No external dependencies.
 from cases import build_cases
 from checks import verify
 
-CLASSES = ["V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10"]
+CLASSES = ["V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10", "V11"]
 
 NAMES = {
     "V1": "Egress to an undeclared destination",
@@ -21,6 +21,7 @@ NAMES = {
     "V8": "Exfiltration within every declared limit",
     "V9": "Cross-sandbox coordination via a shared destination",
     "V10": "Declared envelope differs from the applied one",
+    "V11": "Safety-control state differs from what was declared",
 }
 
 
@@ -44,8 +45,8 @@ def main():
 
     for name, env, tel, truth in cases:
         findings = verify(env, tel)
-        found = {f.violation for f in findings if f.severity != "coverage"}
-        coverage = [f for f in findings if f.severity == "coverage"]
+        found = {f.violation for f in findings if f.severity not in ("coverage", "declared")}
+        coverage = [f for f in findings if f.severity in ("coverage", "declared")]
 
         if truth is None:
             clean_runs += 1

@@ -195,6 +195,28 @@ def v6c_orphaned_resources(env, tel):
     return out
 
 
+# --- model runtime ------------------------------------------------------
+
+def v11_safety_controls_disabled(env, tel):
+    out = []
+    e, t = env["model_runtime"], tel["model_runtime"]
+    if e["safety_classifiers_enabled"] and t["calls_with_classifiers_disabled"] > 0:
+        out.append(Finding("V11", "high",
+                           "%d model calls ran with safety classifiers "
+                           "disabled while the envelope declares them enabled"
+                           % t["calls_with_classifiers_disabled"]))
+    if not e["refusal_thresholds_reduced"] and t["calls_with_reduced_refusals"] > 0:
+        out.append(Finding("V11", "high",
+                           "%d model calls ran with reduced refusal "
+                           "thresholds while the envelope declares none"
+                           % t["calls_with_reduced_refusals"]))
+    if not e["safety_classifiers_enabled"]:
+        out.append(Finding("V11", "declared",
+                           "safety classifiers declared disabled for this "
+                           "environment: an accepted grant, not a violation"))
+    return out
+
+
 CHECKS = [
     t1_hash_binding,
     t2_declared_window,
@@ -212,6 +234,7 @@ CHECKS = [
     v5b_step_definition,
     v6_external_publication,
     v6c_orphaned_resources,
+    v11_safety_controls_disabled,
 ]
 
 
