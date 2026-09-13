@@ -1,5 +1,5 @@
 {
-  "envelope_hash": "sha256:9b33ceed1b49e326c67795e4ab43c09ed9dbfc536b45ee6e331e1fd7b2cdb866",
+  "envelope_hash": "sha256:d8d627fb84c0b0c637cc4a4fb5c7d8f675c90faefd78f68ace24b5ee7a79abd8",
   "reporting_window": {
     "start": "2026-07-01T00:00:00Z",
     "end": "2026-07-08T00:00:00Z"
@@ -32,6 +32,10 @@
     "persistence": {
       "component": "artifact-store",
       "signer": "kms-art-d"
+    },
+    "model_runtime": {
+      "component": "inference-gateway",
+      "signer": "kms-inf-e"
     }
   },
   "network": {
@@ -68,6 +72,11 @@
       "volume": 0,
       "token": 0
     }
+  },
+  "model_runtime": {
+    "total_model_calls": 1842,
+    "calls_with_classifiers_disabled": 0,
+    "calls_with_reduced_refusals": 0
   },
   "_note": "Illustrative example - not the telemetry of any real lab."
 }

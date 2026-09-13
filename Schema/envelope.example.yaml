@@ -51,3 +51,7 @@ persistence:
     - container
     - volume
     - token
+
+model_runtime:
+  safety_classifiers_enabled: true
+  refusal_thresholds_reduced: false
