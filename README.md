@@ -1,26 +1,28 @@
 # containment-envelope
-# Execution Envelope — contención verificable para agentes de IA
 
-Apart AI Incident Response Sprint · Frente 1 · septiembre 2026
+# Execution Envelope — Verifiable Containment for AI Agents
 
-## Qué es
-Un esquema declarativo de permisos para entornos de ejecución de
-agentes, con un verificador que detecta divergencias entre lo
-declarado y lo ocurrido usando solo artefactos públicos — sin
-acceso a la red del laboratorio.
+Apart AI Incident Response Sprint · Track 1 · September 2026
 
-## Cómo correrlo
-    python src/run.py
+## What it is
 
-## Qué encontramos
-De 10 clases de violación de contención, 6 son detectables desde
-artefactos públicos, 1 es condicionada, 2 parciales y 1 no lo es.
-Ver `results/matriz.md`.
+A declarative permission scheme for agent execution environments, with a verifier that detects divergences between what was declared and what actually occurred using only public artifacts — without access to the laboratory network.
 
-## Limitaciones
-Los envelopes y digests incluidos son ejemplos ilustrativos, no
-configuraciones reales de ningún laboratorio. El verificador opera
-sobre datos sintéticos.
+## How to run it
 
-## Licencia
+```
+python src/run.py
+```
+
+## What we found
+
+Of 10 containment violation classes, 6 are detectable from public artifacts, 1 is conditional, 2 are partial, and 1 is not.
+See `results/matriz.md`.
+
+## Limitations
+
+The included envelopes and digests are illustrative examples, not actual configurations from any laboratory. The verifier operates on synthetic data.
+
+## License
+
 MIT
